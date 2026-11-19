@@ -369,4 +369,11 @@
     <string name="com_port_empty">Empty port (test, no device)</string>
     <string name="com_port_auto">Automatic (any USB serial adapter)</string>
     <string name="modern_theme">Modern</string>
+    <string name="wine_clock_title">Date and time</string>
+    <string name="wine_clock_using_phone">Windows programs in this container use the phone\'s date and time (%1$s).\n\nYou can choose another date and time for this container only. The phone\'s clock is not changed.</string>
+    <string name="wine_clock_using_custom">Windows programs in this container see:\n%1$s\n\nPhone: %2$s\n\nThe clock keeps running from the chosen moment. Applies when the container starts.</string>
+    <string name="wine_clock_choose">Choose</string>
+    <string name="wine_clock_reset">Use phone time</string>
+    <string name="wine_clock_reset_done">This container will use the phone\'s date and time again (next start).</string>
+    <string name="wine_clock_saved">Windows will start at %1$s (next time the container starts).</string>
 </resources>

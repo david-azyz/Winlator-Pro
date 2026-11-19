@@ -499,6 +499,8 @@ public class XServerDisplayActivity extends AppCompatActivity implements Navigat
         envVars.put("MESA_DEBUG", "silent");
         envVars.put("MESA_NO_ERROR", "1");
         envVars.put("WINEPREFIX", rootPath+RootFS.WINEPREFIX);
+        // Wine reads the time zone from TZ; without it the clock shows UTC.
+        envVars.put("TZ", com.winlator.core.WineClock.posixTimeZone());
         envVars.put("WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER", "1");
 
         boolean enableWineDebug = preferences.getBoolean("enable_wine_debug", false);
@@ -561,6 +563,16 @@ public class XServerDisplayActivity extends AppCompatActivity implements Navigat
             // Added even without mappings so COM ports left by a previous session are removed from the registry.
             ArrayList<ComPortMapping> comPortMappings = ComPortMapping.parseWithDefault(container.getComPorts());
             environment.addComponent(new SerialPortBridgeComponent(new File(container.getRootDir(), ".wine"), comPortMappings));
+
+            long timeOffset = com.winlator.core.WineClock.getOffsetSeconds(container);
+            if (timeOffset != 0) {
+                String timeShim = com.winlator.core.WineClock.installShim(this);
+                if (timeShim != null) {
+                    envVars.put("WINLATOR_TIME_OFFSET", String.valueOf(timeOffset));
+                    String preload = envVars.has("BOX64_LD_PRELOAD") ? envVars.get("BOX64_LD_PRELOAD") : "";
+                    envVars.put("BOX64_LD_PRELOAD", preload.isEmpty() ? timeShim : preload+":"+timeShim);
+                }
+            }
 
             if (!comPortMappings.isEmpty()) {
                 String shimPath = SerialPortBridgeComponent.installIoctlShim(this);

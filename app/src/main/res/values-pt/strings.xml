@@ -310,4 +310,11 @@
     <string name="com_port_empty">Porta vazia (teste, sem dispositivo)</string>
     <string name="com_port_auto">Automático (qualquer adaptador USB serial)</string>
     <string name="modern_theme">Moderno</string>
+    <string name="wine_clock_title">Data e hora</string>
+    <string name="wine_clock_using_phone">Os programas do Windows neste container usam a data e a hora do celular (%1$s).\n\nVocê pode escolher outra data e hora só para este container. O relógio do celular não muda.</string>
+    <string name="wine_clock_using_custom">Os programas do Windows neste container veem:\n%1$s\n\nCelular: %2$s\n\nO relógio continua andando a partir do momento escolhido. Vale ao iniciar o container.</string>
+    <string name="wine_clock_choose">Escolher</string>
+    <string name="wine_clock_reset">Usar hora do celular</string>
+    <string name="wine_clock_reset_done">Este container volta a usar a data e a hora do celular (na próxima vez que abrir).</string>
+    <string name="wine_clock_saved">O Windows vai começar em %1$s (na próxima vez que o container abrir).</string>
 </resources>

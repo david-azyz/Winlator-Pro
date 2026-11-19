@@ -173,6 +173,9 @@ public class ContainersFragment extends Fragment {
                     case R.id.menu_item_info:
                         (new StorageInfoDialog(activity, container)).show();
                         break;
+                    case R.id.menu_item_date_time:
+                        com.winlator.core.WineClock.showDialog(activity, container);
+                        break;
                 }
                 return true;
             });
